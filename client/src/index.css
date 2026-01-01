@@ -1,0 +1,100 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=LXGW+WenKai+Mono+TC&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@import "tailwindcss";
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 2. MAP VARIABLES TO TAILWIND UTILITIES */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navbarBackground: var(--navbarBackground);
+  --color-cta: var(--cta);
+  --color-border: var(--border);
+  --color-product-page: var(--product-page);
+  --color-shadow-color: var(--shadow-color);
+  
+  /* --- ADD THESE TWO LINES --- */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --font-wenkai: "LXGW WenKai Mono TC", monospace; 
+  --font-jost: "Jost", sans-serif;
+
+
+  --animate-slider-scroll: slider-scroll 20s infinite ease-in-out;
+  @keyframes slider-scroll {
+    0%, 15% { transform: translateX(0); }        /* Show Image 1 */
+    20%, 35% { transform: translateX(-20%); }    /* Show Image 2 */
+    40%, 55% { transform: translateX(-40%); }    /* Show Image 3 */
+    60%, 75% { transform: translateX(-60%); }    /* Show Image 4 */
+    80%, 95% { transform: translateX(-80%); }    /* Show Image 5 */
+    100% { transform: translateX(0); }           /* Reset to start */
+  }
+}
+
+@layer utilities {
+  /* Chrome, Edge, and Safari */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    /* Use your border variable for a subtle, matching scrollbar */
+    background-color: var(--border); 
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: background-color 0.2s;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    /* Use navbar/cta color for a nice pop when interacting */
+    background-color: var(--navbarBackground); 
+  }
+
+  /* Firefox */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    /* Thumb Color | Track Color */
+    scrollbar-color: var(--border) transparent;
+  }
+}
+
+/* 3. DEFINE THE COLOR VALUES */
+:root {
+  --background: #AC7B84;
+  --foreground: #ffffff;
+  --border: #e5e5e5; 
+  --navbarBackground: #6E4555;
+  --cta: #6E4555;
+
+  /* --- ADD CARD COLORS (Light Mode) --- */
+  /* White card to stand out against the Pink background */
+  --card: #6E4555; 
+  --card-foreground: #AC7B84; /* Pink text inside card for contrast */
+  --product-page: #B87C8F;
+  --shadow-color: #ffffff;
+}
+
+.dark {
+  --background: #121420;
+  --foreground: #ffffff;
+  --border: #333333;
+  --navbarBackground: #444444;
+  --cta: #B87C8F;
+
+  /* --- ADD CARD COLORS (Dark Mode) --- */
+  /* A slightly lighter dark grey/blue for the card */
+  --card: #121420; 
+  --card-foreground: #ffffff;
+  --product-page: #555555;
+  --shadow-color: #ffffff;
+}
